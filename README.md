@@ -15,7 +15,23 @@ Project developed in React with Redux and TailwindCSS.
 - After this process is done, just need to run **```npm start```** and your ready to go.
 
 
+## Links of features, dependencies, images, API and frameworks used in this app
+
+- [TailwindCSS v2 Documentation](https://v2.tailwindcss.com/docs)
+
+- [Redux DevTools Repository](https://github.com/reduxjs/redux-devtools)
+
+- [suGOku API Repository](https://github.com/bertoort/sugoku)
+
+- [Redux Checklist Gideline](https://gist.github.com/gabriellukke/295a8e29f27125f1e4479c66f42ea57a)
+
+- [Flaticon](https://www.flaticon.com/)
+
+- [Freepik](https://www.freepik.com/)
+
+
 # For the workshop "Do Zero ao Redux":
+
 Instructions are based on the guideline at [Redux Checklist](https://gist.github.com/gabriellukke/295a8e29f27125f1e4479c66f42ea57a).
 
 The application should have a layout following the standards of the scheme:
