@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getAPI, solveGame } from '../services/handle-api';
 import * as ACT from '../actions';
 
@@ -21,7 +22,7 @@ class Board extends React.Component {
     const { addGame, addSolvedGame } = this.props;
     getAPI('random').then((value) => {
       addGame(value.board);
-      solveGame(value).then((data) => addSolvedGame(data))
+      solveGame(value).then((data) => addSolvedGame(data));
     });
   }
 
@@ -94,5 +95,14 @@ const mapDispatchToProps = (dispatch) => ({
   resetNumber: () => dispatch(ACT.resetNumber()),
   addSolvedGame: (game) => dispatch(ACT.addSolvedGame(game)),
 });
+
+Board.propTypes = {
+  selectedNumber: PropTypes.string.isRequired,
+  game: PropTypes.arrayOf(PropTypes.number).isRequired,
+  addNewValue: PropTypes.func.isRequired,
+  resetNumber: PropTypes.func.isRequired,
+  addGame: PropTypes.func.isRequired,
+  addSolvedGame: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

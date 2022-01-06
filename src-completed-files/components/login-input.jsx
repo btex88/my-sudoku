@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from '../store';
 import * as ACT from '../actions';
 
@@ -23,6 +24,7 @@ class LoginInput extends React.Component {
   checkInput() {
     const { enableButton, disableButton } = this.props;
     const { user } = store.getState();
+    // eslint-disable-next-line no-useless-escape
     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (user.name && re.test(user.email)) {
       enableButton();
@@ -59,5 +61,17 @@ const mapDispatchToProps = (dispatch) => ({
   enableButton: () => dispatch(ACT.enableButton()),
   disableButton: () => dispatch(ACT.disableButton()),
 });
+
+
+LoginInput.propTypes = {
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  addName: PropTypes.func.isRequired,
+  addEmail: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.string).isRequired,
+  disableButton: PropTypes.string.isRequired,
+  enableButton: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginInput);

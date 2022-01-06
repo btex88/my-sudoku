@@ -7,7 +7,7 @@ class LoginButton extends React.Component {
   render() {
     const { buttonStatus } = this.props;
     return (
-      <Link to={buttonStatus ? "/title" : "#"}>
+      <Link to={buttonStatus ? '/title' : '#'}>
         <button
           type="button"
           className={
@@ -28,6 +28,6 @@ const mapStateToProps = (state) => state;
 
 LoginButton.propTypes = {
   buttonStatus: PropTypes.bool.isRequired,
-}
+};
 
 export default connect(mapStateToProps)(LoginButton);

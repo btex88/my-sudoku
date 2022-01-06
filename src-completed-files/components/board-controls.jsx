@@ -83,6 +83,7 @@ BoardControls.propTypes = {
   selectedNumber: PropTypes.string.isRequired,
   resetNumber: PropTypes.func.isRequired,
   selectNumber: PropTypes.func.isRequired,
+  savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardControls);

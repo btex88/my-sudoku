@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as ACT from '../actions';
+import { getAPI, solveGame } from '../services/handle-api';
 
 class SolveButton extends React.Component {
   constructor(props) {
@@ -24,9 +27,18 @@ class SolveButton extends React.Component {
     const {
       game,
       savedGame: { solution },
+      addGame,
+      addSolvedGame,
     } = this.props;
-    if (this.isEqual(solution, game)) return alert('You won!');
-    return alert('Not this time!');
+    if (this.isEqual(solution, game)) {
+      alert('You won!');
+    } else {
+      alert('Not this time!');
+      getAPI('random').then((value) => {
+        addGame(value.board);
+        solveGame(value).then((data) => addSolvedGame(data));
+      });
+    }
   }
 
   render() {
@@ -42,6 +54,18 @@ class SolveButton extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps)(SolveButton);
+const mapDispatchToProps = (dispatch) => ({
+  addGame: (gameData) => dispatch(ACT.addGame(gameData)),
+  addSolvedGame: (solvedGame) => dispatch(ACT.addSolvedGame(solvedGame)),
+});
+
+SolveButton.propTypes = {
+  savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
+  game: PropTypes.arrayOf(PropTypes.number).isRequired,
+  addGame: PropTypes.func.isRequired,
+  addSolvedGame: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SolveButton);
