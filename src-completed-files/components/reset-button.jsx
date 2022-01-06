@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as ACT from '../actions';
-import { getAPI, solveGame } from '../services/handle-api';
+import * as API from '../services/handle-api';
 
 class ResetButton extends React.Component {
   constructor(props) {
@@ -12,12 +12,9 @@ class ResetButton extends React.Component {
   }
 
   handleAPI() {
-    const { addGame, resetNumber, addSolvedGame } = this.props;
-    getAPI('random').then((value) => {
-      addGame(value.board);
-      solveGame(value).then((data) => addSolvedGame(data));
-      resetNumber();
-    });
+    const { solveGame, getAPI, game } = this.props;
+    getAPI('random');
+    solveGame({ board: game });
   }
 
   render() {
@@ -36,15 +33,16 @@ class ResetButton extends React.Component {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  addGame: (gameData) => dispatch(ACT.addGame(gameData)),
+  getAPI: (gameData) => dispatch(API.getAPI(gameData)),
+  solveGame: (game) => dispatch(API.solveGame(game)),
   resetNumber: (gameData) => dispatch(ACT.resetNumber(gameData)),
-  addSolvedGame: (game) => dispatch(ACT.addSolvedGame(game)),
 });
 
 ResetButton.propTypes = {
-  addGame: PropTypes.func.isRequired,
+  getAPI: PropTypes.func.isRequired,
+  solveGame: PropTypes.func.isRequired,
+  game: PropTypes.arrayOf(PropTypes.number).isRequired,
   resetNumber: PropTypes.func.isRequired,
-  addSolvedGame: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetButton);

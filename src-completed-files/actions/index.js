@@ -7,6 +7,8 @@ const RESET_NUMBER = 'RESET_NUMBER';
 const SELECT_NUMBER = 'SELECT_NUMBER';
 const ADD_NEW_VALUE = 'ADD_NEW_VALUE';
 const ADD_SOLVED_GAME = 'ADD_SOLVED_GAME';
+const ERROR = 'ERROR';
+const START = 'START';
 
 const addEmail = (email) => ({ type: ADD_EMAIL, payload: email });
 const addGame = (game) => ({ type: ADD_GAME, payload: game });
@@ -20,6 +22,9 @@ const disableButton = () => ({ type: DISABLE_BUTTON });
 const enableButton = () => ({ type: ENABLE_BUTTON });
 const resetNumber = () => ({ type: RESET_NUMBER });
 const selectNumber = (num) => ({ type: SELECT_NUMBER, payload: num });
+const fetchError = (error) => ({ type: ERROR, payload: error });
+const startFetch = () => ({ type: START });
+
 
 export {
   addEmail,
@@ -31,4 +36,6 @@ export {
   enableButton,
   resetNumber,
   selectNumber,
+  fetchError,
+  startFetch
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAPI, solveGame } from '../services/handle-api';
+import * as API from '../services/handle-api';
 import * as ACT from '../actions';
 
 class Board extends React.Component {
@@ -19,11 +19,9 @@ class Board extends React.Component {
   }
 
   handleAPI() {
-    const { addGame, addSolvedGame } = this.props;
-    getAPI('random').then((value) => {
-      addGame(value.board);
-      solveGame(value).then((data) => addSolvedGame(data));
-    });
+    const { solveGame, getAPI, game } = this.props;
+    getAPI('random');
+    solveGame({ board: game });
   }
 
   handleClick(currValue, x, y) {
@@ -90,10 +88,10 @@ class Board extends React.Component {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  addGame: (gameData) => dispatch(ACT.addGame(gameData)),
+  getAPI: (gameData) => dispatch(API.getAPI(gameData)),
+  solveGame: (game) => dispatch(API.solveGame(game)),
   addNewValue: (newValue) => dispatch(ACT.addNewValue(newValue)),
   resetNumber: () => dispatch(ACT.resetNumber()),
-  addSolvedGame: (game) => dispatch(ACT.addSolvedGame(game)),
 });
 
 Board.propTypes = {
@@ -101,8 +99,8 @@ Board.propTypes = {
   game: PropTypes.arrayOf(PropTypes.number).isRequired,
   addNewValue: PropTypes.func.isRequired,
   resetNumber: PropTypes.func.isRequired,
-  addGame: PropTypes.func.isRequired,
-  addSolvedGame: PropTypes.func.isRequired,
+  getAPI: PropTypes.func.isRequired,
+  solveGame: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

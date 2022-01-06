@@ -1,3 +1,5 @@
+import * as ACT from '../actions';
+
 // API endpoints for each level of difficulty.
 const url = {
   easy: 'https://sugoku.herokuapp.com/board?difficulty=easy',
@@ -7,10 +9,11 @@ const url = {
 };
 
 // Function to return the fetched game.
-export const getAPI = (value) =>
+export const getAPI = (value) => (dispatch) =>
   fetch(url[value])
     .then((response) => response.json())
-    .catch((error) => console.log(error));
+    .then((data) => dispatch(ACT.addGame(data.board)))
+    .catch((error) => dispatch(ACT.fetchError(error)));
 
 // Function to encode the board.
 const encodeBoard = (board) =>
@@ -28,11 +31,12 @@ const encodeParams = (params) =>
     .join('&');
 
 // Function to return the solved game.
-export const solveGame = (data) =>
+export const solveGame = (data) => (dispatch) =>
   fetch('https://sugoku.herokuapp.com/solve', {
     method: 'POST',
     body: encodeParams(data),
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   })
     .then((response) => response.json())
-    .catch((error) => console.log(error));
+    .then((data) => dispatch(ACT.addSolvedGame(data)))
+    .catch((error) => dispatch(ACT.fetchError(error)));
