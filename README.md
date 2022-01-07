@@ -31,6 +31,9 @@ Project developed in React with Redux and TailwindCSS.
 - [Freepik](https://www.freepik.com/)
 
 
+## Vercel deployment
+[mySudoku](https://my-sudoku-six.vercel.app/)
+
 # For the workshop "Do Zero ao Redux":
 
 Instructions are based on the guideline at [Redux Checklist](https://gist.github.com/gabriellukke/295a8e29f27125f1e4479c66f42ea57a).
