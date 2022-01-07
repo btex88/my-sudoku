@@ -8,6 +8,8 @@ const SELECT_NUMBER = 'SELECT_NUMBER';
 const ADD_NEW_VALUE = 'ADD_NEW_VALUE';
 const ADD_SOLVED_GAME = 'ADD_SOLVED_GAME';
 const ERROR = 'ERROR';
+const HIGHLIGHT = 'HIGHLIGHT';
+const PLAY_DOWN = 'PLAY_DOWN';
 
 const addEmail = (email) => ({ type: ADD_EMAIL, payload: email });
 const addGame = (game) => ({ type: ADD_GAME, payload: game });
@@ -17,10 +19,15 @@ const addName = (name) => ({ type: ADD_NAME, payload: name });
 const disableButton = () => ({ type: DISABLE_BUTTON });
 const enableButton = () => ({ type: ENABLE_BUTTON });
 const resetNumber = () => ({ type: RESET_NUMBER });
+const playDown = () => ({ type: PLAY_DOWN });
 const selectNumber = (num) => ({ type: SELECT_NUMBER, payload: num });
+const heighlightNum = (num) => ({ type: HIGHLIGHT, payload: num });
 const fetchError = (error) => ({ type: ERROR, payload: error });
 
+
 export {
+  playDown,
+  heighlightNum,
   addEmail,
   addGame,
   addNewValue,

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as ACT from '../actions';
 import * as API from '../services/handle-api';
+import store from '../store';
+import local from '../services/handle-local-storage';
 
 class ResetButton extends React.Component {
   constructor(props) {
@@ -12,9 +14,14 @@ class ResetButton extends React.Component {
   }
 
   handleAPI() {
-    const { solveGame, getAPI, game } = this.props;
-    getAPI('random');
-    solveGame({ board: game });
+    const { solveGame, getAPI, game, resetNumber } = this.props;
+    getAPI().then(() => {
+      local.set('mySudokuGame', store.getState().game);
+    });
+    solveGame({ board: game }).then(() =>
+      local.set('mySudokuSolvedGame', store.getState().solvedGame),
+    );
+    resetNumber();
   }
 
   render() {

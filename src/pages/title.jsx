@@ -9,10 +9,10 @@ class Title extends React.Component {
         <div className="w-full pt-16">
           <COMP.GradientBar />
         </div>
-        <div className="w-full h-full flex flex-col items-center justify-between">
+        <div className="w-full h-full flex flex-col items-center justify-around">
           <COMP.BoardControls />
           <COMP.Board />
-          <div className="w-full h-16 flex items-center justify-evenly pb-6">
+          <div className="w-full h-16 flex items-center justify-evenly pb-4">
             <COMP.SolveButton />
             <COMP.ResetButton />
           </div>

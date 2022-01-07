@@ -34,6 +34,7 @@ Project developed in React with Redux and TailwindCSS.
 ## Vercel deployment
 [mySudoku](https://my-sudoku-six.vercel.app/)
 
+
 # For the workshop "Do Zero ao Redux":
 
 Instructions are based on the guideline at [Redux Checklist](https://gist.github.com/gabriellukke/295a8e29f27125f1e4479c66f42ea57a).
@@ -136,4 +137,4 @@ The application should have a layout following the standards of the scheme:
 
 - Those buttons will be responsible for reset the board, requesting again the API for another game, and to solve the game to check if the player won or lost the match.
 
-- Create a logic to fetch the API again, as you did at the __Step 06__
+- Use the logic to fetch the API again, as you created at __Step 06__

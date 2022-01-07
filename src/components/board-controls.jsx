@@ -44,14 +44,14 @@ class BoardControls extends React.Component {
   }
 
   renderDifficulty() {
-    const { savedGame } = this.props;
+    const { solvedGame } = this.props;
     if (
-      Object.keys(savedGame).length !== 0 &&
-      savedGame.constructor === Object
+      Object.keys(solvedGame).length !== 0 &&
+      solvedGame.constructor === Object
     ) {
       return (
         <span className="capitalize text-pink-900 text-xl">
-          {`Difficulty: ${savedGame.difficulty}`}
+          {`Difficulty: ${solvedGame.difficulty}`}
         </span>
       );
     }
@@ -83,7 +83,7 @@ BoardControls.propTypes = {
   selectedNumber: PropTypes.string.isRequired,
   resetNumber: PropTypes.func.isRequired,
   selectNumber: PropTypes.func.isRequired,
-  savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
+  solvedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardControls);

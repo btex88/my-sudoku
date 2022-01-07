@@ -9,7 +9,7 @@ const url = {
 };
 
 // Function to return the fetched game.
-export const getAPI = (value) => (dispatch) =>
+export const getAPI = (value = 'random') => (dispatch) =>
   fetch(url[value])
     .then((response) => response.json())
     .then((data) => dispatch(ACT.addGame(data.board)))
