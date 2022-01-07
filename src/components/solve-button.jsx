@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as API from '../services/handle-api';
+import local from '../services/handle-local-storage';
+import store from '../store';
 
 class SolveButton extends React.Component {
   constructor(props) {
@@ -11,8 +13,11 @@ class SolveButton extends React.Component {
     this.isEqual = this.isEqual.bind(this);
   }
 
-  isEqual(arrBase, arrCompare) {
+  isEqual() {
+    const arrBase = local.get('mySudokuSolvedGame').solution;
+    const arrCompare = local.get('mySudokuGame');
     if (arrBase.length === arrCompare.length) {
+      // eslint-disable-next-line sonarjs/no-one-iteration-loop
       for (let index = 0; index < arrBase.length; index += 1) {
         return arrBase[index].every(
           (num, indx) => num === arrCompare[index][indx],
@@ -23,18 +28,17 @@ class SolveButton extends React.Component {
   }
 
   handleClick() {
-    const {
-      game,
-      savedGame: { solution },
-      solveGame,
-      getAPI,
-    } = this.props;
-    if (this.isEqual(solution, game)) {
+    const { game, solveGame, getAPI } = this.props;
+    if (this.isEqual()) {
       alert('You won!');
     } else {
       alert('Not this time!');
-      getAPI('random');
-      solveGame({ board: game });
+      getAPI().then(() => {
+        local.set('mySudokuGame', store.getState().game);
+      });
+      solveGame({ board: game }).then(() =>
+        local.set('mySudokuSolvedGame', store.getState().solvedGame),
+      );
     }
   }
 
@@ -61,8 +65,8 @@ const mapDispatchToProps = (dispatch) => ({
 SolveButton.propTypes = {
   getAPI: PropTypes.func.isRequired,
   solveGame: PropTypes.func.isRequired,
-  savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
-  game: PropTypes.arrayOf(PropTypes.number).isRequired,
+  // savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
+  game: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SolveButton);

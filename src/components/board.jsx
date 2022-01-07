@@ -74,17 +74,13 @@ class Board extends React.Component {
       return `w-8 h-8 border border-pink-300 flex items-center justify-center
       bg-yellow-500`;
     }
-    if ([0, 1, 2, 6, 7, 8].includes(x)) {
-      if ([0, 1, 2, 6, 7, 8].includes(y)) {
-        return `w-8 h-8 border border-pink-300  flex items-center justify-center
+    if ([0, 1, 2, 6, 7, 8].includes(x) && [0, 1, 2, 6, 7, 8].includes(y)) {
+      return `w-8 h-8 border border-pink-300  flex items-center justify-center
         bg-pink-200`;
-      }
     }
-    if ([3, 4, 5].includes(x)) {
-      if ([3, 4, 5].includes(y)) {
-        return `w-8 h-8 border border-pink-300  flex items-center justify-center
+    if ([3, 4, 5].includes(x) && [3, 4, 5].includes(y)) {
+      return `w-8 h-8 border border-pink-300  flex items-center justify-center
         bg-pink-200`;
-      }
     }
     return 'w-8 h-8 border border-pink-300 flex items-center justify-center bg-pink-50';
   }
@@ -135,9 +131,7 @@ const mapDispatchToProps = (dispatch) => ({
 Board.propTypes = {
   selectedNumber: PropTypes.string.isRequired,
   highlighted: PropTypes.string.isRequired,
-  game: PropTypes.arrayOf(PropTypes.number).isRequired,
-  solvedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array])
-    .isRequired,
+  game: PropTypes.arrayOf(PropTypes.array).isRequired,
   addNewValue: PropTypes.func.isRequired,
   resetNumber: PropTypes.func.isRequired,
   playDown: PropTypes.func.isRequired,

@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
 ResetButton.propTypes = {
   getAPI: PropTypes.func.isRequired,
   solveGame: PropTypes.func.isRequired,
-  game: PropTypes.arrayOf(PropTypes.number).isRequired,
+  game: PropTypes.arrayOf(PropTypes.array).isRequired,
   resetNumber: PropTypes.func.isRequired,
 };
 
