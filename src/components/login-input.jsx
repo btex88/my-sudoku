@@ -70,8 +70,8 @@ LoginInput.propTypes = {
   addName: PropTypes.func.isRequired,
   addEmail: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.string).isRequired,
-  disableButton: PropTypes.string.isRequired,
-  enableButton: PropTypes.string.isRequired,
+  disableButton: PropTypes.func.isRequired,
+  enableButton: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginInput);
