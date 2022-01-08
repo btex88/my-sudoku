@@ -72,7 +72,7 @@ class Board extends React.Component {
     const { highlighted } = this.props;
     if (value === Number(highlighted) && highlighted) {
       return `w-8 h-8 border border-pink-300 flex items-center justify-center
-      bg-yellow-500`;
+      bg-yellow-500 font-semibold`;
     }
     if ([0, 1, 2, 6, 7, 8].includes(x) && [0, 1, 2, 6, 7, 8].includes(y)) {
       return `w-8 h-8 border border-pink-300  flex items-center justify-center
@@ -89,7 +89,7 @@ class Board extends React.Component {
     const { game } = this.props;
     if (game.length === 9 && game.constructor === Array) {
       return game.map((row, index) => (
-        <div key={`row-${index}`} className="w-full h-8 flex flex-row">
+        <div key={`row-${index}`} className="w-full h-8 flex flex-row text-xl">
           {row.map((square, indx) => (
             <button
               type="button"

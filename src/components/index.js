@@ -7,6 +7,7 @@ import BoardControls from './board-controls';
 import SolveButton from './solve-button';
 import ResetButton from './reset-button';
 import LoginWelcomeBack from './login-welcome-back';
+import DifficultyLabel from './difficulty-label';
 
 export {
   LoginInput,
@@ -18,4 +19,5 @@ export {
   SolveButton,
   ResetButton,
   LoginWelcomeBack,
+  DifficultyLabel,
 };

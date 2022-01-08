@@ -10,6 +10,7 @@ class Title extends React.Component {
           <COMP.GradientBar />
         </div>
         <div className="w-full h-full flex flex-col items-center justify-around">
+          <COMP.DifficultyLabel />
           <COMP.BoardControls />
           <COMP.Board />
           <div className="w-full h-16 flex items-center justify-evenly pb-4">

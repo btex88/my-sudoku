@@ -9,7 +9,6 @@ class BoardControls extends React.Component {
 
     this.renderButtonNumber = this.renderButtonNumber.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.renderDifficulty = this.renderDifficulty.bind(this);
   }
 
   handleClick(event) {
@@ -34,8 +33,8 @@ class BoardControls extends React.Component {
         type="button"
         className={
           selectedNumber == value
-            ? 'h-8 w-8 border rounded font-bold text-lg text-gray-700 bg-purple-400'
-            : 'h-8 w-8 border rounded font-bold text-lg text-gray-700 bg-pink-400'
+            ? 'h-8 w-8 border rounded text-gray-700 font-bold bg-purple-400'
+            : 'h-8 w-8 border rounded text-gray-700 font-bold bg-pink-400'
         }
         onClick={(event) => this.handleClick(event)}
       >
@@ -44,28 +43,10 @@ class BoardControls extends React.Component {
     ));
   }
 
-  renderDifficulty() {
-    const { solvedGame } = this.props;
-    if (
-      Object.keys(solvedGame).length !== 0 &&
-      solvedGame.constructor === Object
-    ) {
-      return (
-        <span className="capitalize text-pink-900 text-xl">
-          {`Difficulty: ${solvedGame.difficulty}`}
-        </span>
-      );
-    }
-    return '';
-  }
-
   render() {
     return (
-      <div className="w-full h-20 flex flex-col items-center justify-around px-2">
-        <div className="w-full h-8 flex items-center justify-center">
-          {this.renderDifficulty()}
-        </div>
-        <div className="w-full h-8 flex items-center justify-center">
+      <div className="w-full h-12 flex flex-col items-center justify-evenly px-2">
+        <div className="w-full h-8 flex items-center justify-center text-xl">
           {this.renderButtonNumber()}
         </div>
       </div>
@@ -84,7 +65,6 @@ BoardControls.propTypes = {
   selectedNumber: PropTypes.string.isRequired,
   heighlightNum: PropTypes.func.isRequired,
   selectNumber: PropTypes.func.isRequired,
-  solvedGame: PropTypes.shape([PropTypes.string, PropTypes.array]).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardControls);
