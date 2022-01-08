@@ -41,29 +41,29 @@ class Board extends React.Component {
   }
 
   insertNumber(x, y) {
-    const { game, selectedNumber, addNewValue, resetNumber, playDown } =
+    const { game, selectedNumber, addNewValue, selectNumber, heighlightNum } =
       this.props;
     const newValues = [...game];
     newValues[x].splice(y, 1, Number(selectedNumber));
     addNewValue([...newValues]);
     local.set('mySudokuGame', [...newValues]);
-    resetNumber();
-    playDown();
+    selectNumber();
+    heighlightNum();
   }
 
   deleteNumber(x, y) {
-    const { game, addNewValue, resetNumber } = this.props;
+    const { game, addNewValue, selectNumber } = this.props;
     const newValues = [...game];
     newValues[x].splice(y, 1, 0);
     addNewValue([...newValues]);
     local.set('mySudokuGame', [...newValues]);
-    resetNumber();
+    selectNumber();
   }
 
   handleClick(currValue, x, y) {
-    const { selectedNumber, heighlightNum, resetNumber } = this.props;
+    const { selectedNumber, heighlightNum, selectNumber } = this.props;
     if (!currValue && selectedNumber !== 'X') this.insertNumber(x, y);
-    if (!currValue && selectedNumber === 'X') resetNumber();
+    if (!currValue && selectedNumber === 'X') selectNumber();
     if (currValue && selectedNumber === 'X') this.deleteNumber(x, y);
     if (currValue && !selectedNumber) heighlightNum(currValue.toLocaleString());
   }
@@ -124,8 +124,7 @@ const mapDispatchToProps = (dispatch) => ({
   addSolvedGame: (solvedGame) => dispatch(ACT.addSolvedGame(solvedGame)),
   addGame: (game) => dispatch(ACT.addGame(game)),
   addNewValue: (newValue) => dispatch(ACT.addNewValue(newValue)),
-  resetNumber: () => dispatch(ACT.resetNumber()),
-  playDown: () => dispatch(ACT.playDown()),
+  selectNumber: (num) => dispatch(ACT.selectNumber(num)),
 });
 
 Board.propTypes = {
@@ -133,13 +132,12 @@ Board.propTypes = {
   highlighted: PropTypes.string.isRequired,
   game: PropTypes.arrayOf(PropTypes.array).isRequired,
   addNewValue: PropTypes.func.isRequired,
-  resetNumber: PropTypes.func.isRequired,
-  playDown: PropTypes.func.isRequired,
+  selectNumber: PropTypes.func.isRequired,
+  heighlightNum: PropTypes.func.isRequired,
   getAPI: PropTypes.func.isRequired,
   solveGame: PropTypes.func.isRequired,
   addGame: PropTypes.func.isRequired,
   addSolvedGame: PropTypes.func.isRequired,
-  heighlightNum: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

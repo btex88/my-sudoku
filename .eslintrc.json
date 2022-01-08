@@ -196,7 +196,7 @@
             "always"
         ],
         "react/forbid-component-props": [
-            "error"
+            "warn"
         ],
         "react/forbid-prop-types": [
             "error"

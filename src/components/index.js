@@ -6,6 +6,7 @@ import GradientBar from './gradient-bar';
 import BoardControls from './board-controls';
 import SolveButton from './solve-button';
 import ResetButton from './reset-button';
+import LoginWelcomeBack from './login-welcome-back';
 
 export {
   LoginInput,
@@ -16,4 +17,5 @@ export {
   BoardControls,
   SolveButton,
   ResetButton,
+  LoginWelcomeBack,
 };

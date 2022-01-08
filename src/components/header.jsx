@@ -14,8 +14,8 @@ class Header extends React.Component {
   checkUser() {
     const { user } = this.props;
     const localUser = local.get('mySudokuUser');
-    if (_.isEmpty(localUser)) return {...user};
-    return {...localUser};
+    if (_.isEmpty(localUser)) return { ...user };
+    return { ...localUser };
   }
 
   render() {
@@ -26,13 +26,17 @@ class Header extends React.Component {
         items-center justify-evenly"
       >
         <div className="w-4/12 h-full flex items-center justify-center">
-          <img src={panda} alt="panda" className="w-12 h-12" />
+          <img src={ panda } alt="panda" className="w-12 h-12" />
         </div>
         <div
           className="w-8/12 h-full flex flex-col items-center justify-evenly text-md
         text-gray-800"
         >
-          <span>{`Welcome ${user.name}`}</span>
+          <span
+            className="font-semibold tracking-wide animation-pulse text-gray-600"
+          >
+            {`Welcome ${user.name}`}
+          </span>
         </div>
       </div>
     );

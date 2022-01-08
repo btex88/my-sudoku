@@ -14,14 +14,14 @@ class ResetButton extends React.Component {
   }
 
   handleAPI() {
-    const { solveGame, getAPI, game, resetNumber } = this.props;
+    const { solveGame, getAPI, game, selectNumber } = this.props;
     getAPI().then(() => {
       local.set('mySudokuGame', store.getState().game);
     });
     solveGame({ board: game }).then(() =>
       local.set('mySudokuSolvedGame', store.getState().solvedGame),
     );
-    resetNumber();
+    selectNumber();
   }
 
   render() {
@@ -42,14 +42,14 @@ const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
   getAPI: (gameData) => dispatch(API.getAPI(gameData)),
   solveGame: (game) => dispatch(API.solveGame(game)),
-  resetNumber: (gameData) => dispatch(ACT.resetNumber(gameData)),
+  selectNumber: (num) => dispatch(ACT.selectNumber(num)),
 });
 
 ResetButton.propTypes = {
   getAPI: PropTypes.func.isRequired,
   solveGame: PropTypes.func.isRequired,
   game: PropTypes.arrayOf(PropTypes.array).isRequired,
-  resetNumber: PropTypes.func.isRequired,
+  selectNumber: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetButton);

@@ -1,41 +1,40 @@
 const ADD_EMAIL = 'ADD_EMAIL';
 const ADD_GAME = 'ADD_GAME';
 const ADD_NAME = 'ADD_NAME';
-const DISABLE_BUTTON = 'DISABLE_BUTTON';
-const ENABLE_BUTTON = 'ENABLE_BUTTON';
-const RESET_NUMBER = 'RESET_NUMBER';
-const SELECT_NUMBER = 'SELECT_NUMBER';
 const ADD_NEW_VALUE = 'ADD_NEW_VALUE';
 const ADD_SOLVED_GAME = 'ADD_SOLVED_GAME';
+const BYPASS = 'BYPASS';
+const DISABLE_BUTTON = 'DISABLE_BUTTON';
+const ENABLE_BUTTON = 'ENABLE_BUTTON';
 const ERROR = 'ERROR';
 const HIGHLIGHT = 'HIGHLIGHT';
-const PLAY_DOWN = 'PLAY_DOWN';
+const SELECT_NUMBER = 'SELECT_NUMBER';
+const SUBMIT = 'SUBMIT';
 
-const addEmail = (email) => ({ type: ADD_EMAIL, payload: email });
-const addGame = (game) => ({ type: ADD_GAME, payload: game });
-const addSolvedGame = (game) => ({ type: ADD_SOLVED_GAME, payload: game });
-const addNewValue = (value) => ({ type: ADD_NEW_VALUE, payload: value });
-const addName = (name) => ({ type: ADD_NAME, payload: name });
+const addEmail = (payload) => ({ type: ADD_EMAIL, payload });
+const addGame = (payload) => ({ type: ADD_GAME, payload });
+const addName = (payload) => ({ type: ADD_NAME, payload });
+const addNewValue = (payload) => ({ type: ADD_NEW_VALUE, payload });
+const addSolvedGame = (payload) => ({ type: ADD_SOLVED_GAME, payload });
+const bypass = () => ({ type: BYPASS });
 const disableButton = () => ({ type: DISABLE_BUTTON });
 const enableButton = () => ({ type: ENABLE_BUTTON });
-const resetNumber = () => ({ type: RESET_NUMBER });
-const playDown = () => ({ type: PLAY_DOWN });
-const selectNumber = (num) => ({ type: SELECT_NUMBER, payload: num });
-const heighlightNum = (num) => ({ type: HIGHLIGHT, payload: num });
-const fetchError = (error) => ({ type: ERROR, payload: error });
-
+const fetchError = (payload) => ({ type: ERROR, payload });
+const heighlightNum = (payload = '') => ({ type: HIGHLIGHT, payload });
+const selectNumber = (payload = '') => ({ type: SELECT_NUMBER, payload });
+const submit = () => ({ type: SUBMIT });
 
 export {
-  playDown,
-  heighlightNum,
   addEmail,
   addGame,
-  addNewValue,
   addName,
+  addNewValue,
   addSolvedGame,
+  bypass,
   disableButton,
   enableButton,
-  resetNumber,
-  selectNumber,
   fetchError,
+  heighlightNum,
+  selectNumber,
+  submit,
 };

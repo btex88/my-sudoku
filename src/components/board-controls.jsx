@@ -13,14 +13,15 @@ class BoardControls extends React.Component {
   }
 
   handleClick(event) {
-    const { selectedNumber, resetNumber, selectNumber } = this.props;
+    const { selectedNumber, selectNumber, heighlightNum } = this.props;
     const { id } = event.target;
     if (id === selectedNumber) {
-      resetNumber();
-      return 0;
+      selectNumber();
+      heighlightNum();
+    } else {
+      selectNumber(id);
+      heighlightNum(id);
     }
-    selectNumber(id);
-    return 0;
   }
 
   renderButtonNumber() {
@@ -76,12 +77,12 @@ const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   selectNumber: (num) => dispatch(ACT.selectNumber(num)),
-  resetNumber: () => dispatch(ACT.resetNumber()),
+  heighlightNum: (num) => dispatch(ACT.heighlightNum(num)),
 });
 
 BoardControls.propTypes = {
   selectedNumber: PropTypes.string.isRequired,
-  resetNumber: PropTypes.func.isRequired,
+  heighlightNum: PropTypes.func.isRequired,
   selectNumber: PropTypes.func.isRequired,
   solvedGame: PropTypes.shape([PropTypes.string, PropTypes.array]).isRequired,
 };
