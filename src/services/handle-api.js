@@ -8,12 +8,13 @@ const url = {
   random: 'https://sugoku.herokuapp.com/board?difficulty=random',
 };
 
-// Function to return the fetched game.
-export const getAPI = (value = 'random') => (dispatch) =>
-  fetch(url[value])
-    .then((response) => response.json())
-    .then((data) => dispatch(ACT.addGame(data.board)))
-    .catch((error) => dispatch(ACT.fetchError(error)));
+// Function to return the fetched game (Thunked).
+const getAPI = (value = 'random') =>
+  (dispatch) =>
+    fetch(url[value])
+      .then((response) => response.json())
+      .then((data) => dispatch(ACT.addGame(data.board)))
+      .catch((error) => dispatch(ACT.fetchError(error)));
 
 // Function to encode the board.
 const encodeBoard = (board) =>
@@ -30,8 +31,8 @@ const encodeParams = (params) =>
     .map((key) => key + '=' + `%5B${encodeBoard(params[key])}%5D`)
     .join('&');
 
-// Function to return the solved game.
-export const solveGame = (data) => (dispatch) =>
+// Function to return the solved game (Thunked).
+const solveGame = (data) => (dispatch) =>
   fetch('https://sugoku.herokuapp.com/solve', {
     method: 'POST',
     body: encodeParams(data),
@@ -40,3 +41,5 @@ export const solveGame = (data) => (dispatch) =>
     .then((response) => response.json())
     .then((data) => dispatch(ACT.addSolvedGame(data)))
     .catch((error) => dispatch(ACT.fetchError(error)));
+
+export { solveGame, getAPI, url };

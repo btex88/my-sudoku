@@ -23,19 +23,24 @@ class Header extends React.Component {
     return (
       <div
         className="w-full h-16 fixed top-0 bg-pink-100 flex flex-row flex-nowrap
-        items-center justify-evenly"
+        items-center justify-evenly pt-2"
       >
-        <div className="w-4/12 h-full flex items-center justify-center">
+        <div className="w-12 h-12 flex items-center justify-center">
           <img src={ panda } alt="panda" className="w-12 h-12" />
         </div>
         <div
-          className="w-8/12 h-full flex flex-col items-center justify-evenly text-md
+          className="h-full flex flex-col items-center justify-evenly text-md
         text-gray-800"
         >
           <span
-            className="font-semibold tracking-wide animation-pulse text-gray-600"
+            className="font-semibold tracking-wide animation-pulse text-gray-600 text-xl"
           >
-            {`Welcome ${user.name}`}
+            Welcome
+          </span>
+          <span
+            className="font-semibold tracking-wide animation-pulse text-gray-600 text-xl"
+          >
+            {user.name}
           </span>
         </div>
       </div>

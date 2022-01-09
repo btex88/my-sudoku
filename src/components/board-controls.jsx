@@ -31,10 +31,11 @@ class BoardControls extends React.Component {
         id={value}
         key={`btn-0${value}`}
         type="button"
+        style={ { fontFamily: 'Lato, sans-serif' } }
         className={
           selectedNumber == value
-            ? 'h-8 w-8 border rounded text-gray-700 font-bold bg-purple-400'
-            : 'h-8 w-8 border rounded text-gray-700 font-bold bg-pink-400'
+            ? 'h-8 w-8 border rounded text-gray-700 font-semibold bg-purple-400'
+            : 'h-8 w-8 border rounded text-gray-700 font-semibold bg-pink-400'
         }
         onClick={(event) => this.handleClick(event)}
       >

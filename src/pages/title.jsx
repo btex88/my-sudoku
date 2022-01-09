@@ -6,14 +6,13 @@ class Title extends React.Component {
     return (
       <div className="w-full h-full flex flex-col items-center justify-evenly">
         <COMP.Header />
-        <div className="w-full pt-16">
-          <COMP.GradientBar />
-        </div>
-        <div className="w-full h-full flex flex-col items-center justify-around">
+        <COMP.GradientBar />
+        <div className="w-full h-full flex flex-col items-center justify-around pt-20">
           <COMP.DifficultyLabel />
+          <COMP.DifficultyBar />
           <COMP.BoardControls />
           <COMP.Board />
-          <div className="w-full h-16 flex items-center justify-evenly pb-4">
+          <div className="w-full h-16 flex items-center justify-evenly">
             <COMP.SolveButton />
             <COMP.ResetButton />
           </div>

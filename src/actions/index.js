@@ -10,6 +10,7 @@ const ERROR = 'ERROR';
 const HIGHLIGHT = 'HIGHLIGHT';
 const SELECT_NUMBER = 'SELECT_NUMBER';
 const SUBMIT = 'SUBMIT';
+const SELECT_DIFFICULTY = 'SELECT_DIFFICULTY';
 
 const addEmail = (payload) => ({ type: ADD_EMAIL, payload });
 const addGame = (payload) => ({ type: ADD_GAME, payload });
@@ -23,6 +24,7 @@ const fetchError = (payload) => ({ type: ERROR, payload });
 const heighlightNum = (payload = '') => ({ type: HIGHLIGHT, payload });
 const selectNumber = (payload = '') => ({ type: SELECT_NUMBER, payload });
 const submit = () => ({ type: SUBMIT });
+const selectDifficulty = (payload) => ({ type: SELECT_DIFFICULTY, payload});
 
 export {
   addEmail,
@@ -37,4 +39,5 @@ export {
   heighlightNum,
   selectNumber,
   submit,
+  selectDifficulty,
 };

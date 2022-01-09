@@ -26,12 +26,12 @@ class LoginWelcomeBack extends React.Component {
       <div
         className="w-full h-full flex flex-col flex-nowrap items-center justify-center"
       >
-        <span
+        <h1
           className="text-4xl tracking-wide capitalize text-center text-gray-700
           animate-pulse leading-relaxed "
         >
           Welcome Back {user.name}
-        </span>
+        </h1>
         <AiOutlineLoading3Quarters
           className="animate-spin text-6xl mt-16 text-pink-400"
         />

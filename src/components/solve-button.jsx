@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as API from '../services/handle-api';
 import local from '../services/handle-local-storage';
-import store from '../store';
 
 class SolveButton extends React.Component {
   constructor(props) {
@@ -28,17 +27,17 @@ class SolveButton extends React.Component {
   }
 
   handleClick() {
-    const { game, solveGame, getAPI } = this.props;
+    const { solveGame, getAPI } = this.props;
     if (this.isEqual()) {
       alert('You won!');
     } else {
       alert('Not this time!');
-      getAPI().then(() => {
-        local.set('mySudokuGame', store.getState().game);
+      getAPI().then((value) => {
+        local.set('mySudokuGame', value.payload);
+        solveGame({ board: value.payload }).then((data) => {
+          local.set('mySudokuSolvedGame', data.payload);
+        });
       });
-      solveGame({ board: game }).then(() =>
-        local.set('mySudokuSolvedGame', store.getState().solvedGame),
-      );
     }
   }
 
@@ -46,7 +45,8 @@ class SolveButton extends React.Component {
     return (
       <button
         type="button"
-        className="bg-pink-500 hover:bg-pink-700 text-white font-bold w-24 h-10 rounded"
+        className="bg-pink-500 hover:bg-pink-700 text-white font-bold w-24 h-10 rounded
+        tracking-wider"
         onClick={() => this.handleClick()}
       >
         Solve
@@ -65,8 +65,6 @@ const mapDispatchToProps = (dispatch) => ({
 SolveButton.propTypes = {
   getAPI: PropTypes.func.isRequired,
   solveGame: PropTypes.func.isRequired,
-  // savedGame: PropTypes.objectOf([PropTypes.string, PropTypes.array]).isRequired,
-  game: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SolveButton);

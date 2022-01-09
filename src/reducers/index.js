@@ -6,6 +6,7 @@ import selectedNumber from './selected-number';
 import solvedGame from './solved-game';
 import highlighted from './highlighted';
 import bypassLogin from './bypass-login';
+import selectedDifficulty from './selected-difficulty';
 
 const rootReducer = combineReducers({
   user,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   solvedGame,
   highlighted,
   bypassLogin,
+  selectedDifficulty,
 });
 
 export default rootReducer;

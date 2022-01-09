@@ -5,7 +5,6 @@ import local from '../services/handle-local-storage';
 import * as API from '../services/handle-api';
 import * as ACT from '../actions';
 import _ from 'lodash';
-import store from '../store';
 
 class Board extends React.Component {
   constructor(props) {
@@ -26,14 +25,14 @@ class Board extends React.Component {
   handleAPI() {
     const localGame = local.get('mySudokuGame');
     const localSolvedGame = local.get('mySudokuSolvedGame');
-    const { solveGame, getAPI, game, addSolvedGame, addGame } = this.props;
+    const { solveGame, getAPI, addSolvedGame, addGame } = this.props;
     if (!localGame && _.isEmpty(localSolvedGame)) {
-      getAPI().then(() => {
-        local.set('mySudokuGame', store.getState().game);
+      getAPI().then((value) => {
+        local.set('mySudokuGame', value.payload);
+        solveGame({ board: value.payload }).then(data => {
+          local.set('mySudokuSolvedGame', data.payload);
+        });
       });
-      solveGame({ board: game }).then(() =>
-        local.set('mySudokuSolvedGame', store.getState().solvedGame),
-      );
     } else {
       addGame(localGame);
       addSolvedGame(localSolvedGame);
@@ -41,14 +40,12 @@ class Board extends React.Component {
   }
 
   insertNumber(x, y) {
-    const { game, selectedNumber, addNewValue, selectNumber, heighlightNum } =
-      this.props;
+    const { game, selectedNumber, addNewValue, selectNumber } = this.props;
     const newValues = [...game];
     newValues[x].splice(y, 1, Number(selectedNumber));
     addNewValue([...newValues]);
     local.set('mySudokuGame', [...newValues]);
     selectNumber();
-    heighlightNum();
   }
 
   deleteNumber(x, y) {
@@ -61,8 +58,10 @@ class Board extends React.Component {
   }
 
   handleClick(currValue, x, y) {
-    const { selectedNumber, heighlightNum, selectNumber } = this.props;
+    const { selectedNumber, heighlightNum, selectNumber, highlighted } = this.props;
+    if (!currValue && !selectedNumber && !highlighted) return '';
     if (!currValue && selectedNumber !== 'X') this.insertNumber(x, y);
+    if (!currValue && selectedNumber === '') heighlightNum();
     if (!currValue && selectedNumber === 'X') selectNumber();
     if (currValue && selectedNumber === 'X') this.deleteNumber(x, y);
     if (currValue && !selectedNumber) heighlightNum(currValue.toLocaleString());
@@ -71,7 +70,7 @@ class Board extends React.Component {
   handleStyle(x, y, value) {
     const { highlighted } = this.props;
     if (value === Number(highlighted) && highlighted) {
-      return `w-8 h-8 border border-pink-300 flex items-center justify-center
+      return `w-8 h-8 border-2 border-pink-500 flex items-center justify-center
       bg-yellow-500 font-semibold`;
     }
     if ([0, 1, 2, 6, 7, 8].includes(x) && [0, 1, 2, 6, 7, 8].includes(y)) {
@@ -95,6 +94,7 @@ class Board extends React.Component {
               type="button"
               key={`row-${index}-square${indx}`}
               className={this.handleStyle(index, indx, square)}
+              style={ { fontFamily: 'Lato, sans-serif' } }
               onClick={() => this.handleClick(square, index, indx)}
             >
               {square || null}

@@ -16,9 +16,11 @@ class DifficultyLabel extends React.Component {
       solvedGame.constructor === Object
     ) {
       return (
-        <span className="capitalize text-pink-900 text-2xl">
-          {`Difficulty: ${solvedGame.difficulty}`}
-        </span>
+        <div className="w-full flex flex-col items-center justify-evenly">
+          <span className="capitalize text-pink-900 text-xl tracking-wider">
+            Difficulty: {solvedGame.difficulty}
+          </span>
+        </div>
       );
     }
     return '';
@@ -26,17 +28,17 @@ class DifficultyLabel extends React.Component {
 
   render() {
     return (
-      <div className="w-full h-8 flex items-center justify-center font-bold">
+      <div className="w-full h-8 flex flex-col items-center justify-center">
         {this.renderDifficulty()}
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => state;
+
 DifficultyLabel.propTypes = {
   solvedGame: PropTypes.shape([PropTypes.string, PropTypes.array]).isRequired,
 };
-
-const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps)(DifficultyLabel);
