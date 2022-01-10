@@ -12,7 +12,7 @@ class Title extends React.Component {
           <COMP.DifficultyBar />
           <COMP.BoardControls />
           <COMP.Board />
-          <div className="w-full h-16 flex items-center justify-evenly">
+          <div className="w-full h-16 flex items-center justify-evenly max-w-sm">
             <COMP.SolveButton />
             <COMP.ResetButton />
           </div>

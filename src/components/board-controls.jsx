@@ -58,8 +58,8 @@ class BoardControls extends React.Component {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  selectNumber: (num) => dispatch(ACT.selectNumber(num)),
-  heighlightNum: (num) => dispatch(ACT.heighlightNum(num)),
+  selectNumber: (payload) => dispatch(ACT.selectNumber(payload)),
+  heighlightNum: (payload) => dispatch(ACT.heighlightNum(payload)),
 });
 
 BoardControls.propTypes = {

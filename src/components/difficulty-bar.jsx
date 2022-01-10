@@ -17,7 +17,10 @@ class DifficultyBar extends React.Component {
 
   render() {
     return (
-      <div className="h-16 w-full flex flex-row flex-wrap items-center justify-around">
+      <div
+        className="h-16 w-full flex flex-row flex-wrap items-center justify-around
+        max-w-sm"
+      >
         {this.renderButtons()}
       </div>
     );

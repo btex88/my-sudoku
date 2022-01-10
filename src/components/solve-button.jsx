@@ -58,8 +58,8 @@ class SolveButton extends React.Component {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  getAPI: (gameData) => dispatch(API.getAPI(gameData)),
-  solveGame: (game) => dispatch(API.solveGame(game)),
+  getAPI: (payload) => dispatch(API.getAPI(payload)),
+  solveGame: (payload) => dispatch(API.solveGame(payload)),
 });
 
 SolveButton.propTypes = {

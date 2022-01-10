@@ -119,12 +119,13 @@ const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   getAPI: () => dispatch(API.getAPI()),
-  solveGame: (game) => dispatch(API.solveGame(game)),
-  heighlightNum: (game) => dispatch(ACT.heighlightNum(game)),
-  addSolvedGame: (solvedGame) => dispatch(ACT.addSolvedGame(solvedGame)),
-  addGame: (game) => dispatch(ACT.addGame(game)),
-  addNewValue: (newValue) => dispatch(ACT.addNewValue(newValue)),
-  selectNumber: (num) => dispatch(ACT.selectNumber(num)),
+  solveGame: (payload) => dispatch(API.solveGame(payload)),
+
+  heighlightNum: (payload) => dispatch(ACT.heighlightNum(payload)),
+  addSolvedGame: (payload) => dispatch(ACT.addSolvedGame(payload)),
+  addGame: (payload) => dispatch(ACT.addGame(payload)),
+  addNewValue: (payload) => dispatch(ACT.addNewValue(payload)),
+  selectNumber: (payload) => dispatch(ACT.selectNumber(payload)),
 });
 
 Board.propTypes = {

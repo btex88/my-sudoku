@@ -56,8 +56,8 @@ class LoginInput extends React.Component {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  addName: (name) => dispatch(ACT.addName(name)),
-  addEmail: (email) => dispatch(ACT.addEmail(email)),
+  addName: (payload) => dispatch(ACT.addName(payload)),
+  addEmail: (payload) => dispatch(ACT.addEmail(payload)),
   enableButton: () => dispatch(ACT.enableButton()),
   disableButton: () => dispatch(ACT.disableButton()),
 });

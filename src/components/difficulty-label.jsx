@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 class DifficultyLabel extends React.Component {
   constructor(props) {
@@ -11,19 +12,14 @@ class DifficultyLabel extends React.Component {
 
   renderDifficulty() {
     const { solvedGame } = this.props;
-    if (
-      Object.keys(solvedGame).length !== 0 &&
-      solvedGame.constructor === Object
-    ) {
-      return (
-        <div className="w-full flex flex-col items-center justify-evenly">
-          <span className="capitalize text-pink-900 text-xl tracking-wider">
-            Difficulty: {solvedGame.difficulty}
-          </span>
-        </div>
-      );
-    }
-    return '';
+    if (_.isEmpty(solvedGame)) return null;
+    return (
+      <div className="w-full flex flex-col items-center justify-evenly">
+        <span className="capitalize text-pink-900 text-xl tracking-wider font-medium">
+          Difficulty: {solvedGame.difficulty}
+        </span>
+      </div>
+    );
   }
 
   render() {
