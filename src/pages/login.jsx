@@ -37,6 +37,7 @@ class Login extends React.Component {
           pt-16"
         >
           <COMP.LoginInput id="name" type="text" placeholder="Name" />
+          <COMP.LoginInput id="email" type="email" placeholder="Email" />
           <COMP.LoginButton />
         </div>
       </div>
